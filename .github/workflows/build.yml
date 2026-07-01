@@ -30,6 +30,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           submodules: recursive
+
+      - name: Change App Display Name
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Duolingo" Resources/Info.plist || \
+          /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string Duolingo" Resources/Info.plist
+
       - name: Set Scheme
         id: scheme
         run: |
